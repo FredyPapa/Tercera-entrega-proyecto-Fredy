@@ -1,15 +1,11 @@
-# Segunda entrega del proyecto final - Fredy Papa
+# Tercera entrega del proyecto final - Fredy Papa
 ### (E-commerce Backend)
 
 ##### Nota:
 Puede usar https://dillinger.io/ para ver este contenido con los formatos de MD
 
 ## GitHub
-https://github.com/FredyPapa/proyecto-primera-entrega.git
-
-## Glitch
-- Live: https://orchid-awake-belief.glitch.me
-- Code: https://glitch.com/edit/#!/orchid-awake-belief
+https://github.com/FredyPapa/Tercera-entrega-proyecto-Fredy
 
 ## Dependencias
 El proyecto usa las siguientes ```dependencias```:
@@ -19,6 +15,10 @@ El proyecto usa las siguientes ```dependencias```:
 - firebase-admin
 - joi
 - mongoose
+- bcryptjs
+- connect-mongo
+- express-session
+- nodemailer
  
 Y ```dependencias de desarrollo```:
 - nodemon
@@ -30,6 +30,7 @@ Crear el archivo ```.env``` con el siguiente contenido
 ~~~
 PORT=8080
 MONGO_ATLAS=mongodb+srv://root:coderhouse@cursonode.o3yqn.mongodb.net/proyecto?retryWrites=true&w=majority
+PASS_MAILER = *********************
 ~~~
 
 ## Arquitectura del proyecto

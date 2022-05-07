@@ -90,7 +90,6 @@ A considerar en el Body (como raw de tipo JSON):
 }
 ~~~
 
-### /api/usuario/login
 ```Loguear usuario```
 | Verbo HTTP | URL |
 | ------ | ------ |
@@ -104,7 +103,6 @@ A considerar en el Body (como raw de tipo JSON):
 }
 ~~~
 
-### /api/usuario/logout
 ```Desloguear usuario```
 | Verbo HTTP | URL |
 | ------ | ------ |

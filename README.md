@@ -21,6 +21,7 @@ El proyecto usa las siguientes ```dependencias```:
 - nodemailer
 - jsonwebtoken
 - winston
+- express-fileupload
  
 Y ```dependencias de desarrollo```:
 - nodemon
@@ -77,7 +78,7 @@ Para las pruebas debe ingresar en ```Postman``` los siguientes valores
 | ------ | ------ |
 | POST | http://localhost:8080/api/usuario/ |
 
-A considerar en el Body (como raw de tipo JSON):
+A considerar en el Body (como form-data y considerando el campo foto como tipo File):
 ~~~
 {
     "email": "fpapa10@gmail.com",
@@ -86,7 +87,7 @@ A considerar en el Body (como raw de tipo JSON):
     "direccion": "Dirección",
     "edad": "37",
     "telefono": "993372748",
-    "foto": "https://image.shutterstock.com/image-vector/vector-illustration-set-rulers-flat-260nw-1052690225.jpg"
+    "foto": (adjuntar archivo)
 }
 ~~~
 

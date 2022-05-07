@@ -19,6 +19,8 @@ El proyecto usa las siguientes ```dependencias```:
 - connect-mongo
 - express-session
 - nodemailer
+- jsonwebtoken
+- winston
  
 Y ```dependencias de desarrollo```:
 - nodemon
@@ -29,8 +31,9 @@ Ejecutar el código ```npm install``` para reconstruir los módulos de Node.
 Crear el archivo ```.env``` con el siguiente contenido
 ~~~
 PORT=8080
-MONGO_ATLAS=mongodb+srv://root:coderhouse@cursonode.o3yqn.mongodb.net/proyecto?retryWrites=true&w=majority
+MONGO_ATLAS=***********************
 PASS_MAILER = *********************
+SECRETORPRIVATEKEY=
 ~~~
 
 ## Arquitectura del proyecto
@@ -42,7 +45,7 @@ El proyecto fue desarrollado considerando la arquitectura ```SOA``` entre los ar
 - files: En la carptea files se guardan los archivos TXT generados para la persistencia de los registros tanto de productos como carrito.
 - config: Contiene la configuración de la conexión a la base de datos.
 - schemas: Contiene el esquema de los catálogos usados
-- utils: Son las utilidades que usa el proyecto, como por ejemplo firebase.
+- utils: Son las utilidades que usa el proyecto, como por ejemplo firebase, jwt, winston.
 
 ## Ubicación de la variable (flag) Administrador
 Según el enunciado sólo se hace referencia a rutas disponibles para el Administrador en ```/api/productos``` por ese motivo se añadió el flag en una variable en:
@@ -60,9 +63,52 @@ En esa ubicación se podrá actualizar el flag a ```false```
 
 ## Prueba de funcionalidad
 Los endpoints pueden ser validados con ```Postman``` 
+Para acceder a las rutas de Producto y Carrito deberá estar logueado previamente, lo cual se validará con un JWT enviado en el header, para las pruebas con ```Postman``` debe agregar en el header
+| KEY | VALOR |
+| ------ | ------ |
+| x-token | (valor de JWT) |
 
 ## Proceso de Pruebas de funcionalidad
 Para las pruebas debe ingresar en ```Postman``` los siguientes valores
+
+### /api/usuario/
+```Registrar usuario```
+| Verbo HTTP | URL |
+| ------ | ------ |
+| POST | http://localhost:8080/api/usuario/ |
+
+A considerar en el Body (como raw de tipo JSON):
+~~~
+{
+    "email": "fpapa10@gmail.com",
+    "password": "12345678",
+    "nombre": "Fredy9",
+    "direccion": "Dirección",
+    "edad": "37",
+    "telefono": "993372748",
+    "foto": "https://image.shutterstock.com/image-vector/vector-illustration-set-rulers-flat-260nw-1052690225.jpg"
+}
+~~~
+
+### /api/usuario/login
+```Loguear usuario```
+| Verbo HTTP | URL |
+| ------ | ------ |
+| POST | http://localhost:8080/api/usuario/login/ |
+
+A considerar en el Body (como raw de tipo JSON):
+~~~
+{
+    "email": "fpapa@gmail.com",
+    "password": "123456"
+}
+~~~
+
+### /api/usuario/logout
+```Desloguear usuario```
+| Verbo HTTP | URL |
+| ------ | ------ |
+| GET | http://localhost:8080/api/usuario/logout |
 
 ### /api/productosArchivo  (Archivo)
 ```Listar todos los productos```
@@ -354,6 +400,11 @@ A considerar en el Body (como raw de tipo JSON):
 | Verbo HTTP | URL |
 | ------ | ------ |
 | DELETE | http://localhost:8080/api/carritoMongoDB/61df836e25e0ae4d04690696/productos/61de7531c0abac58f96456ea |
+
+```Generar Pedido de un carrito por id```
+| Verbo HTTP | URL |
+| ------ | ------ |
+| GET | http://localhost:8080/api/carritoMongoDB/6232ab17d5450c40e1a3ba6c/pedido |
 
 
 ### /api/carritoFirebase (Firebase)
